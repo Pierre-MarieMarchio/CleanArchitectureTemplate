@@ -3,30 +3,29 @@ using CleanArchitectureTemplate.Application.Modules.AuthModule.DTOs;
 using CleanArchitectureTemplate.Application.Modules.AuthModule.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace CleanArchitectureTemplate.API.Modules.AuthModule;
 
 [Route("api/Auth")]
 [ApiController]
-public class AuthRegisterController : ControllerBase
+public class AuthLoginController : ControllerBase
 {
 
-    private readonly IRegisterUseCase _useCase;
+    private readonly ILoginUseCase _useCase;
 
-    public AuthRegisterController(IRegisterUseCase useCase)
+    public AuthLoginController(ILoginUseCase useCase)
     {
         _useCase = useCase;
 
     }
 
-    [HttpPost("Register")]
-    public virtual async Task<ActionResult<UserDto>> Create(RegisterDto dto)
+    [HttpPost("Login")]
+    public virtual async Task<ActionResult<LoginResponseDto>> Create(LoginRequestDto dto)
     {
 
         try
         {
-            var createdItem = await this._useCase.RegisterAsync(dto);
-            return Ok(createdItem);
+            var response = await this._useCase.LoginAsync(dto);
+            return Ok(response);
         }
         catch (Exception e)
         {

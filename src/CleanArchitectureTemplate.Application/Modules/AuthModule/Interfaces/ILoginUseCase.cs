@@ -3,7 +3,7 @@ using CleanArchitectureTemplate.Application.Modules.AuthModule.DTOs;
 
 namespace CleanArchitectureTemplate.Application.Modules.AuthModule.Interfaces;
 
-public interface IRegisterUseCase
+public interface ILoginUseCase
 {
-    public Task<UserDto> RegisterAsync(RegisterDto dto);
+    Task<LoginResponseDto> LoginAsync(LoginRequestDto dto);
 }
